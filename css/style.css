@@ -239,6 +239,7 @@ margin-left: 0;
 .images.right{
 float: right;
 margin-right: 0;
+margin-bottom: 20px;
 }
 .puzzle_wrapper{
 margin-top: 20px;
@@ -260,7 +261,6 @@ border-radius: 15px;
 margin-top: 20px;
 line-height: 40px;
 }
-
 .mission_puzzle {
 padding-left: 10px;
 padding-right: 10px;
