@@ -3,7 +3,6 @@ overflow-x: hidden;
 margin: 0;
 padding: 0;
 }
-
 .puzzle_wrapper{
 margin-top: 30px;
 max-width: 1000px;
@@ -163,7 +162,7 @@ margin-right: 2%;
 }
 .chunk_puzzle.dragged_image{
 position: absolute;
-max-width: 80px;
+max-width: 120px;
 z-index: 8;
 }
 .images> img{

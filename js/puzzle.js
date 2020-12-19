@@ -144,16 +144,18 @@ function touchMove(event){
   let touchobj = event.changedTouches[0];
   let dist_horizontal = parseInt(touchobj.clientX) - puzzle_startx ;
   let dist_vertical = parseInt(touchobj.clientY) - puzzle_starty;
-  current_fill.classList.add('dragged_image');
-    if(window.innerHeight > window.innerWidth){
-      console.log("Вертикальное");
-       current_fill.style.top =   dist_horizontal + width_chunk + 'px';
-       current_fill.style.left = dist_vertical + height_chunk +  'px';
-    }
-    else{
-      current_fill.style.left =   dist_horizontal + width_chunk + 'px';
-      current_fill.style.top = dist_vertical + height_chunk +  'px';  
-    }
+ 
+    // if(window.innerHeight > window.innerWidth){
+    //   console.log("Вертикальное");
+    //    current_fill.style.top =   dist_horizontal + width_chunk + 'px';
+    //    current_fill.style.left = dist_vertical + height_chunk +  'px';
+    // }
+    // else{ 
+    	
+      current_fill.style.left =   dist_horizontal + width_chunk*2 + 'px';
+      current_fill.style.top = dist_vertical + height_chunk*2 +  'px';  
+      current_fill.classList.add('dragged_image');
+    // }
   event.preventDefault();
 }
 
