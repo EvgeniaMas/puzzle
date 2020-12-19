@@ -63,6 +63,7 @@ function fadeIn(el) {
 // events
 const dragstart = function(event) {
   current_fill = event.target;
+  current_fill.classList.add('draggable_chunk'); 
   current_fill_id = event.target.id;        
   event.dataTransfer.setData('text', current_fill_id);
   notification.innerText = '';
@@ -79,11 +80,13 @@ const drop = function(event) {
 
   if(event.target.classList.contains(current_fill_id)){
       event.target.appendChild(document.getElementById(imageId));
+      current_fill.classList.remove('draggable_chunk'); 
       --puzzle_chunks;
       checkFinish();
   }
   else{
     notification.innerText = '다시 시도해보세요!';
+     current_fill.classList.remove('draggable_chunk'); 
     return false;
   }      
 };
