@@ -1,8 +1,10 @@
+/*in themes styles*/
 html, body{
 overflow-x: hidden;
 margin: 0;
 padding: 0;
 }
+/*puzzle styles*/
 .puzzle_wrapper{
 margin-top: 30px;
 max-width: 1000px;
@@ -173,9 +175,6 @@ max-width: 45%;
 filter: drop-shadow(1px 1px 0 #817d75) 
 drop-shadow(-1px -1px 0 #817d75);
 }
-/*.col>img:hover{
-background-color:green;
-}*/
 /*first_line*/
 .row.first >.col.slice_0_0 >img{
 top:0;
@@ -184,14 +183,12 @@ width: 127%;
 top: 0%;
 z-index: 4;
 }
-
 .row.first >.col.slice_0_3 >img{
 top:0;
 left: 0;
 width: 101%;
 z-index: 4;
 }
-
 .row.first >.col.slice_0_2 >img{
 top:0;
 left: 0;
@@ -236,7 +233,6 @@ left: -24%;
 width: 125%;
 }
 @media (max-width: 767px) {
-
 .images.left{
 margin-left: 0;
 }
@@ -244,8 +240,6 @@ margin-left: 0;
 float: right;
 margin-right: 0;
 }
-
-
 .puzzle_wrapper{
 margin-top: 20px;
 width: 100%;
@@ -297,7 +291,6 @@ max-width: 50px;
 }
 .puzzle.second.text {
 font-size: 18px;
-/*margin-bottom: 20px;*/
 }
 .puzzle.first.text {
 padding-top: 20px;
@@ -310,7 +303,6 @@ height: 15vw;
 }
 #notification{
 font-size: 18px;
-/*margin-bottom: 20px;*/
 font-weight: bold;
 min-height: 20px;
 }
