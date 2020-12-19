@@ -5,6 +5,7 @@ overflow-x: hidden;
 margin-top: 30px;
 max-width: 1000px;
 margin:auto;
+margin-bottom: 30px;
 }
 .puzzle{
 margin: 0 auto;
@@ -45,7 +46,6 @@ text-decoration: none;
 outline: none;
 text-decoration: none;
 }
-
 .mission_puzzle{
 padding-left: 15px;
 padding-right: 15px;
@@ -116,7 +116,6 @@ z-index: 1;
 width: 25%;
 max-width: 200px;
 position: relative;
-border: 1px solid red;
 }
 .col >img {
 display: block;
@@ -149,7 +148,7 @@ min-height: 50px;
 text-align: center;
 background-color: #f8f8f8;
 background-color: #c3c0ba;
-min-height: 15vw;
+min-height: 16vw;
 }
 .images.left{
 float: left;
@@ -161,7 +160,7 @@ margin-right: 2%;
 }
 .chunk_puzzle.dragged_image{
 position: absolute;
-max-width: 110px;
+max-width: 80px;
 z-index: 8;
 }
 .images> img{
@@ -171,79 +170,78 @@ max-width: 45%;
   drop-shadow(-1px -1px 0 #817d75);
 filter: drop-shadow(1px 1px 0 #817d75) 
 drop-shadow(-1px -1px 0 #817d75);
-
 }
-.col>img:hover{
+/*.col>img:hover{
 background-color:green;
-}
-.col.top.bottom.right>img{
-width: 134%;
-top: -30%;
-}
-.row.last>.col.left>img{
-left: -24%;  
-}
-.row.last>.col.top>img{
-top: -35%;
-width: 103%;
-}
-.row.first >.col.slice_0_3 >img{
+}*/
+/*first_line*/
+.row.first >.col.slice_0_0 >img{
 top:0;
-left: 0;
-width: 100%;
+left: 0%;
+width: 127%;
+top: 0%;
 z-index: 4;
 }
 
+.row.first >.col.slice_0_3 >img{
+top:0;
+left: 0;
+width: 101%;
+z-index: 4;
+}
+
+.row.first >.col.slice_0_2 >img{
+top:0;
+left: 0;
+width: 131%;
+z-index: 4;
+}
 /*middle row*/
 .row.middle>.col.col.slice_1_0>img{
-top: -34%;
+top: -31.9%;
 left: 0%;
-width: 127%;
+width: 124.8%;
 }
 .row.middle>.col.slice_1_1>img{
-top: -33%;
+top: -32%;
 left: 0%;
 width: 100%;
 }
 .row.middle>.col.slice_1_2>img{
 top: 0%;
-left: -28%;
-width: 157%;
+left: -27%;
+width: 151%;
 height: 100%;
 }
 .row.middle>.col.slice_1_3>img{
-top: -38%;
-left: -15%;
-width: 115%;
+top: -33.5%;
+left: 0;
+width: 101.5%;
 }
 /*last row*/
 .row.last>.col.slice_2_1>img{
-width: 150%;
+width: 148.5%;
 left: -24%;
 }
-
 .row.last>.col.slice_2_2>img{
 top: 0%;
-top: -37%;
-width: 100%;
+top: -34.8%;
+width: 101%;
 }
-
 .row.last>.col.slice_2_3>img{
 top: 0%;
-left: -23.5%;
-width: 127%;
+left: -24%;
+width: 125%;
 }
 @media (max-width: 767px) {
 .puzzle_wrapper{
 margin-top: 20px;
+width: 100%;
 max-width: 360px;
 }
-
 .chunk_puzzle.dragged_image{
 max-width: 60px;
 }
-
-
 #congrat_puzzle_button {
 padding-left: 10px;
 padding-right: 10px;
