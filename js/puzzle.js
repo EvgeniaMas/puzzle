@@ -10,9 +10,17 @@ let puzzle_empties = document.querySelectorAll('.col');
 let puzzle_fills = document.querySelectorAll('.chunk_puzzle');
 let current_fill;
 let current_fill_id; 
+const cells = document.getElementsByClassName('col');
+const rows = document.getElementsByClassName('row');
+const congrat_puzzle_button = document.getElementById('congrat_puzzle_button');
+const images = document.getElementsByTagName('img');
+let current_id;
 // drag and drop events
       const dragstart = function(event) {
-        event.dataTransfer.setData('text', event.target.id);
+        current_fill = event.target;
+        current_fill_id = event.target.id;        
+        event.dataTransfer.setData('text', current_fill_id);
+        notification.innerText = '';
       };
       const dragover = function(event) {
         if(event.target.nodeName.toLowerCase() === 'img') {
@@ -23,37 +31,47 @@ let current_fill_id;
       const drop = function(event) {
         event.preventDefault();
         let imageId = event.dataTransfer.getData('text');
-        event.target.appendChild(document.getElementById(imageId));
-        --puzzle_chunks;
-        checkFinish();
+
+        if(event.target.classList.contains(current_fill_id)){
+            event.target.appendChild(document.getElementById(imageId));
+            --puzzle_chunks;
+            checkFinish();
+        }
+        else{
+          notification.innerText = '다시 시도해보세요!';
+          return false;
+        }      
       };
 
-      const cells = document.getElementsByClassName('col');
+      
       Array.from(cells).forEach((element) => {
         element.addEventListener('dragover',dragover);
+
         element.addEventListener('drop',drop);
       });      
 
-      const images = document.getElementsByTagName('img');
+      
       Array.from(images).forEach((element) => {
         element.addEventListener('dragstart',dragstart);
       });
 
-
 // touch events
-puzzle_fills.forEach(puzzle_fill => {
+
+    puzzle_fills.forEach(puzzle_fill => {
       puzzle_fill.addEventListener('touchstart', touchStart);
       puzzle_fill.addEventListener('touchmove',touchMove);
       puzzle_fill.addEventListener('touchend', touchEnd);
     });
 
-function touchStart(e){
-let touchobj = e.changedTouches[0] 
+
+function touchStart(event){
+let touchobj = event.changedTouches[0] 
 puzzle_startx = parseInt(touchobj.clientX);
 puzzle_starty = parseInt(touchobj.clientY);
-current_fill = e.target;
+current_fill = event.target;
 current_fill_id = current_fill.getAttribute('id');
-console.log(current_fill_id);
+current_fill.style.top =   puzzle_startx +   'px';
+current_fill.style.left = puzzle_starty +  'px';
 let coordinates = current_fill.getBoundingClientRect();
 puzzle_coord_x = coordinates.top;
 puzzle_coord_y = coordinates.left;
@@ -65,44 +83,75 @@ puzzle_coord_y = coordinates.left;
        blocks_coordinates.push(coor_to_check);
        coor_to_check = [];
     }
-  e.preventDefault();
+  event.preventDefault();
 }
   
-function touchMove(e){
-  let touchobj = e.changedTouches[0];
-  let dist_horizontal = parseInt(touchobj.clientX) - puzzle_startx;
+function touchMove(event){
+
+  let width_chunk = current_fill.width/2;
+  let height_chunk = current_fill.height/2;
+
+  let touchobj = event.changedTouches[0];
+  let dist_horizontal = parseInt(touchobj.clientX) - puzzle_startx ;
   let dist_vertical = parseInt(touchobj.clientY) - puzzle_starty;
   current_fill.classList.add('dragged_image');
-  current_fill.style.left =   dist_horizontal + 'px';
-  current_fill.style.top = dist_vertical +  'px';
-  e.preventDefault();
+  current_fill.style.left =   dist_horizontal + width_chunk + 'px';
+  current_fill.style.top = dist_vertical + height_chunk +  'px';
+  event.preventDefault();
 }
 
-function touchEnd(e){
+function touchEnd(event){
 let coordinates = current_fill.getBoundingClientRect();
 puzzle_coord_x = coordinates.top;
-puzzle_coord_y = coordinates.left;    
+puzzle_coord_y = coordinates.left; 
+current_fill.classList.remove('dragged_image');   
     for (let i=0; i<blocks_coordinates.length; i++){ 
          let position_x = Math.abs(puzzle_coord_x - blocks_coordinates[i][1]);
          let position_y = Math.abs(puzzle_coord_y - blocks_coordinates[i][0]);
-               console.log(puzzle_empties[i].classList);
-               console.log(current_fill_id);
-                       current_fill.style.top = 0;
-                       current_fill.style.left =0;
-                 if(puzzle_empties[i].classList.contains(current_fill_id)){
-                   puzzle_empties[i].append(current_fill);
-                   --puzzle_chunks;
-                   checkFinish();
-                 }
-                 else{
-                    notification.innerText = '다시 시도해보세요!';
-                    setTimeout('cleanNotification()', 2000);
-                 }                               
+
+if(position_x<50 && position_y<50){
+  if(cells[i].classList.contains(current_fill_id)){
+
+current_fill.style.top = 0;
+               current_fill.style.left =0;
+    cells[i].appendChild(current_fill);
+   
+    console.log(cells[i]);
+
+    alert("Добавилвлвлвлв");
+
+    --puzzle_chunks;
+     checkFinish();
+  }
+
+  else{
+    alert("ОТклонаяююяюя");
+    current_fill.classList.remove('dragged_image');
+    notification.innerText = '다시 시도해보세요!';
+    setTimeout('cleanNotification()', 2000);
+  }
+}
+       
+               // console.log(puzzle_empties[i].classList);
+               // console.log(current_fill_id);
+                // current_fill.style.top = 0;
+                // current_fill.style.left =0;
+                 // if(puzzle_empties[i].classList.contains(current_fill_id)){
+                   
+
+                 //   --puzzle_chunks;
+                 //   checkFinish();
+                 // }
+                 // else{
+                 //    notification.innerText = '다시 시도해보세요!';
+                 //    setTimeout('cleanNotification()', 2000);
+                 // }                               
               // }
            } //for-end
-        let touchobj = e.changedTouches[0];        
-        e.preventDefault();
+        let touchobj = event.changedTouches[0];        
+        event.preventDefault();
 }
+
 // clean notification
 function cleanNotification(){
   notification.innerText = '';
@@ -110,11 +159,36 @@ function cleanNotification(){
 
 // game over if correct image
 function checkFinish(){
-  console.log(puzzle_chunks);
    if(puzzle_chunks == 0){
     notification.innerText = '완성하였습니다! 다음 단계로 넘어가세요';
+    congrat_puzzle_button.style.display = 'block';
   }
   else{
     notification.innerText = '';
   }
 }
+
+function adjustGameLayout(){
+   let width = document.getElementById('outline').width;
+   let height = (655*width/1102)/3;
+   for(let i=0; i<rows.length; i++){
+  rows[i].style.height = height + 'px';
+  }
+}
+
+
+window.onload = function() {      
+  adjustGameLayout();
+}
+
+window.addEventListener('orientationchange', function() {
+ adjustGameLayout();
+}, false);
+
+
+window.addEventListener('resize', function() {
+ adjustGameLayout();
+}, false);
+
+
+
