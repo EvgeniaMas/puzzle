@@ -9,19 +9,20 @@
 </head>
 <body>
 <!-- HTML TO INCLUDE TO Wordpress -->
+<div id ="full_container">
     <p class="mission_puzzle">mission 03</p>
     <p class="puzzle first text">퍼즐 맞추기</p>
     <p class="puzzle second text">퍼즐을 맞춰 문구를 완성시켜보세요!</p>
     <p id="notification"></p> 
     <a id="congrat_puzzle_button" href="http://lgchem-newleaders.com/?elementor_library=npopup-mission-smallhead3" target="_self">Congratulations</a>
     <div class="puzzle_wrapper">
-        <div class="images left">
-        	<img class="chunk_puzzle" id="slice_2_2" draggable="true" src="images/11.png">
-        	<img class="chunk_puzzle" id="slice_1_2" draggable="true" src="images/7.png">
-          <img class="chunk_puzzle" id="slice_0_0" draggable="true" src="images/1.png">
-          <img class="chunk_puzzle" id="slice_2_3" draggable="true" src="images/12.png"> 
-          <img class="chunk_puzzle" id="slice_2_0" draggable="true" src="images/9.png">
-          <img class="chunk_puzzle" id="slice_1_1" draggable="true" src="images/6.png">
+        <div id="left_chunks" class="images left">
+        	<img class="chunk_puzzle left" id="slice_2_2" draggable="true" src="images/11.png">
+        	<img class="chunk_puzzle left" id="slice_1_2" draggable="true" src="images/7.png">
+          <img class="chunk_puzzle left" id="slice_0_0" draggable="true" src="images/1.png">
+          <img class="chunk_puzzle left" id="slice_2_3" draggable="true" src="images/12.png"> 
+          <img class="chunk_puzzle left" id="slice_2_0" draggable="true" src="images/9.png">
+          <img class="chunk_puzzle left" id="slice_1_1" draggable="true" src="images/6.png">
       </div>
       <div class="puzzle"> 
           <div class="puzzle_container">
@@ -45,16 +46,17 @@
           <div class="col slice_2_3"></div>
         </div>
       </div>
-      <div class="images right">
-          <img class="chunk_puzzle" id="slice_0_1" draggable="true" src="images/2.png">
-          <img class="chunk_puzzle" id="slice_1_3" draggable="true" src="images/8.png">
-          <img class="chunk_puzzle" id="slice_0_3" draggable="true" src="images/4.png">
-          <img class="chunk_puzzle" id="slice_2_1" draggable="true" src="images/10.png">          
-          <img class="chunk_puzzle" id="slice_0_2" draggable="true" src="images/3.png">
-          <img class="chunk_puzzle" id="slice_1_0" draggable="true" src="images/5.png">
+      <div id="right_chunks" class="images right">
+          <img class="chunk_puzzle right" id="slice_0_1" draggable="true" src="images/2.png">
+          <img class="chunk_puzzle right" id="slice_1_3" draggable="true" src="images/8.png">
+          <img class="chunk_puzzle right" id="slice_0_3" draggable="true" src="images/4.png">
+          <img class="chunk_puzzle right" id="slice_2_1" draggable="true" src="images/10.png">          
+          <img class="chunk_puzzle right" id="slice_0_2" draggable="true" src="images/3.png">
+          <img class="chunk_puzzle right" id="slice_1_0" draggable="true" src="images/5.png">
          </div>
         </div>        
       </div> <!-- wrapper -->
+    </div>
        <!-- END OF MAIN GAME HTML -->
     <script src="js/puzzle.js"></script> 
    </body>

@@ -16,9 +16,7 @@ const congrat_puzzle_button = document.getElementById('congrat_puzzle_button');
 const images = document.getElementsByTagName('img');
 let current_id;
 let chunks_coordinate = [[0,0], [0,0], [0,0], [0,0], [-31.9, 0], [-32, 0], [0, -27], [-33.5, 0], [0, 0], [0, -24], [-34.8, 0], [0, -24]]
-const full_container = document.getElementById('full_container');
-const left_chunks = document.getElementById('left_chunks');
-const right_chunks = document.getElementById('right_chunks');
+
 // put image to back if incorrect action
 function returnPuzzleImage(){
   current_fill.classList.remove('dragged_image');
@@ -71,11 +69,11 @@ const dragstart = function(event) {
   notification.innerText = '';
 };
 const dragover = function(event) {
+  if(event.target.nodeName.toLowerCase() === 'img') {
+    return true;
+  }
   event.preventDefault();
 }
-
-
-
 const drop = function(event) {
   event.preventDefault();
   let imageId = event.dataTransfer.getData('text');
@@ -87,17 +85,17 @@ const drop = function(event) {
       checkFinish();
   }
   else{
-    if(event.target.classList.contains('col')){
-      notification.innerText = '다시 시도해보세요!';
-    }
-    
+    notification.innerText = '다시 시도해보세요!';
      current_fill.classList.remove('draggable_chunk'); 
     return false;
   }      
 };
 
-full_container.addEventListener('dragover',dragover);
-full_container.addEventListener('drop',drop);
+Array.from(cells).forEach((element) => {
+  element.addEventListener('dragover',dragover);
+
+  element.addEventListener('drop',drop);
+});      
 
 Array.from(images).forEach((element) => {
   element.addEventListener('dragstart',dragstart);
