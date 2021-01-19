@@ -149,16 +149,16 @@ return false;
     let dist_horizontal = parseInt(touchobj.clientX) - puzzle_startx ;
     let dist_vertical = parseInt(touchobj.clientY) - puzzle_starty; 
     current_fill.classList.add('dragged_image');
-   //  if(window.innerHeight > window.innerWidth){ 
-   //     current_fill.style.right =   0 + 'px';
-   //    current_fill.style.left =   dist_horizontal + width_chunk/2 +15 + 'px';
-   //    current_fill.style.top = dist_vertical + height_chunk/2 +15 + 'px';       
-   //  }
-   // else{    
+    if(window.innerHeight > window.innerWidth){ 
+       current_fill.style.right =   0 + 'px';
+      current_fill.style.left =   dist_horizontal + width_chunk/2 +15 + 'px';
+      current_fill.style.top = dist_vertical + height_chunk/2 +15 + 'px';       
+    }
+   else{    
       current_fill.style.right =   0 + 'px'; 	
       current_fill.style.left =   dist_horizontal + width_chunk + 'px';
       current_fill.style.top = dist_vertical + height_chunk +  'px';        
-   // }
+    }
   event.preventDefault();
 }
 function touchEnd(event){
