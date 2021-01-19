@@ -111,17 +111,29 @@ window.addEventListener('resize', function() {
 }, false);
 
 // touch events functions
+let start_event = null;
+
 function touchStart(event){
 if(event.target.parentNode.classList.contains('col')){
 return false;	
 }
+
+start_event = event;
+
+
 let touchobj = event.changedTouches[0] 
 puzzle_startx = parseInt(touchobj.clientX);
 puzzle_starty = parseInt(touchobj.clientY);
+
+let x = touchobj.pageX;
+let y = touchobj.pageY;
+
+console.log(y);
+
 current_fill = event.target;
 current_fill_id = current_fill.getAttribute('id');
-current_fill.style.top =   puzzle_startx + 'px';
-current_fill.style.left = -puzzle_starty + 'px';
+current_fill.style.top =   x + 'px';
+current_fill.style.left = y + 'px';
 
 
 
@@ -143,22 +155,31 @@ function touchMove(event){
 if(event.target.parentNode.classList.contains('col')){
 return false;	
 }
-    let width_chunk = current_fill.width/2;
-    let height_chunk = current_fill.height/2;
+    let width_chunk = current_fill.width;
+    let height_chunk = current_fill.height;
     let touchobj = event.changedTouches[0];
     let dist_horizontal = parseInt(touchobj.clientX) - puzzle_startx ;
     let dist_vertical = parseInt(touchobj.clientY) - puzzle_starty; 
     current_fill.classList.add('dragged_image');
-    if(window.innerHeight > window.innerWidth){   
-      current_fill.style.right =   0 + 'px';
-      current_fill.style.left =   dist_horizontal + width_chunk  + 'px';
-      current_fill.style.top = dist_vertical + height_chunk/2 + 'px';       
-    }
-   else{    
-      current_fill.style.right =   0 + 'px'; 	
-      current_fill.style.left =   dist_horizontal + width_chunk + 'px';
-      current_fill.style.top = dist_vertical + height_chunk +  'px';        
-    }
+   //  if(window.innerHeight > window.innerWidth){   
+   //    current_fill.style.right =   0 + 'px';
+   //    current_fill.style.left =   dist_horizontal + width_chunk  + 'px';
+   //    current_fill.style.top = dist_vertical + height_chunk+ 'px';       
+   //  }
+   // else{    
+   //    current_fill.style.right =   0 + 'px'; 	
+   //    current_fill.style.left =   dist_horizontal + width_chunk + 'px';
+   //    current_fill.style.top = dist_vertical + height_chunk +  'px';        
+   //  }
+
+    current_fill.style.left =   event.touches[0].pageX - start_event.touches[0].pageX + width_chunk/2+ 'px';
+     current_fill.style.top =  event.touches[0].pageY - start_event.touches[0].pageY + height_chunk/2 +  'px';  
+
+
+
+
+
+
   event.preventDefault();
 }
 function touchEnd(event){
@@ -194,3 +215,18 @@ puzzle_coord_y = coordinates.left;
     let touchobj = event.changedTouches[0];        
     event.preventDefault();
 }
+
+
+let event = null;
+
+document.addEventListener("touchstart", function (e) {
+    event = e;
+});
+document.addEventListener("touchmove", function (e) {
+    if (event) {
+        // console.log("Move delta: " + (e.touches[0].pageY - event.touches[0].pageY))
+    }
+});
+document.addEventListener("touched", function (e) {
+    event = null;
+});
