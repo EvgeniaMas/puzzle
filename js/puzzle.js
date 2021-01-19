@@ -152,8 +152,8 @@ return false;
     if(window.innerHeight > window.innerWidth){ 
   
        current_fill.style.right =   0 + 'px';
-      current_fill.style.left =   dist_horizontal + width_chunk +15 + 'px';
-      current_fill.style.top = dist_vertical + height_chunk +15 + 'px';       
+      current_fill.style.left =   dist_horizontal + width_chunk +50 + 'px';
+      current_fill.style.top = dist_vertical + height_chunk + 'px';       
     }
    else{    
       current_fill.style.right =   0 + 'px'; 	
