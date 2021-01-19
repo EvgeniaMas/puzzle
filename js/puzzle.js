@@ -172,8 +172,8 @@ return false;
    //    current_fill.style.top = dist_vertical + height_chunk +  'px';        
    //  }
 
-    current_fill.style.left =   event.touches[0].pageX - start_event.touches[0].pageX + width_chunk/2+ 'px';
-     current_fill.style.top =  event.touches[0].pageY - start_event.touches[0].pageY + height_chunk/2 +  'px';  
+    current_fill.style.left =   event.touches[0].pageX - start_event.touches[0].pageX + width_chunk+ 'px';
+   current_fill.style.top =  event.touches[0].pageY - start_event.touches[0].pageY + height_chunk +  'px';  
 
 
 
