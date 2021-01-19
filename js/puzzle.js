@@ -122,22 +122,12 @@ start_event = event;
 
 
 let touchobj = event.changedTouches[0] 
-puzzle_startx = parseInt(touchobj.clientX);
-puzzle_starty = parseInt(touchobj.clientY);
-
-let x = touchobj.pageX;
-let y = touchobj.pageY;
-
-console.log(y);
-
+puzzle_startx = parseInt(touchobj.pageX);
+puzzle_starty = parseInt(touchobj.pageY);
 current_fill = event.target;
 current_fill_id = current_fill.getAttribute('id');
-current_fill.style.top =   x + 'px';
-current_fill.style.left = y + 'px';
-
-
-
-
+current_fill.style.top =   puzzle_startx + 'px';
+current_fill.style.left = puzzle_starty + 'px';
 let coordinates = current_fill.getBoundingClientRect();
 puzzle_coord_x = coordinates.top;
 puzzle_coord_y = coordinates.left;
@@ -161,25 +151,8 @@ return false;
     let dist_horizontal = parseInt(touchobj.clientX) - puzzle_startx ;
     let dist_vertical = parseInt(touchobj.clientY) - puzzle_starty; 
     current_fill.classList.add('dragged_image');
-   //  if(window.innerHeight > window.innerWidth){   
-   //    current_fill.style.right =   0 + 'px';
-   //    current_fill.style.left =   dist_horizontal + width_chunk  + 'px';
-   //    current_fill.style.top = dist_vertical + height_chunk+ 'px';       
-   //  }
-   // else{    
-   //    current_fill.style.right =   0 + 'px'; 	
-   //    current_fill.style.left =   dist_horizontal + width_chunk + 'px';
-   //    current_fill.style.top = dist_vertical + height_chunk +  'px';        
-   //  }
-
-    current_fill.style.left =   event.touches[0].pageX - start_event.touches[0].pageX + width_chunk+ 'px';
-   current_fill.style.top =  event.touches[0].pageY - start_event.touches[0].pageY + height_chunk +  'px';  
-
-
-
-
-
-
+    current_fill.style.left =   event.touches[0].pageX - start_event.touches[0].pageX + width_chunk/2+ 'px';
+   current_fill.style.top =  event.touches[0].pageY - start_event.touches[0].pageY + height_chunk/2 +  'px';  
   event.preventDefault();
 }
 function touchEnd(event){
